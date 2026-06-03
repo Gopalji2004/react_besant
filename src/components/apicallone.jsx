@@ -1,30 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react'
 
-export default function apicallone(){
+export default function ApiCallOne() {
+    const [data, setdata] = useState([])
+    const[count,setcount] = useState(0)
 
-
-    const[data,setdata]=useState([])
-
-     const handlefetch=async () =>{
-        let res=await fetch("https://fakestoreapi.com/products/1")
-        let fullres=await res.json()
+    const handlefetch = async () => {
+        let res = await fetch('https://fakestoreapi.com/products/')
+        let fullres = await res.json()
         setdata(fullres)
-        // console.log(fullres);
+        console.log("luffy");
+
     }
 
+    useEffect(() => {
+        handlefetch()
+            console.log("HEY LUFFY");
 
-    return(
+        return () => {
+            console.log("HEY ARUN");
+
+        }
+
+    }, [count])
+
+
+    const handleadd = () =>{
+        setcount(count+1)
+    }
+
+    return (
         <div>
-            
-            <h1>api call work</h1>
-            <button onClick={handlefetch}>call api</button>
+            <h1>api call</h1>
+            <h1>{count}</h1>
 
-            {data.map((da, i) => (
-                <div>
-                   <h1>{da.title}</h1>
-                </div>
-            ))}
+            <button onClick={handleadd}>add</button>
+
+            <div className='prowarp'>
+                {data.map((da, i) => (
+                    <div key={i}>
+                        <div className='cardpro'>
+                            <img src={da.image} height={200} width={200} />
+                            <h1 >{da.title}</h1>
+                            <h3>Price : {da.price}</h3>
+                        </div>
+                    </div>
+
+                ))}
+
+            </div>
         </div>
     )
-        
 }
