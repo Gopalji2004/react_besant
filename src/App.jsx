@@ -1,9 +1,11 @@
 import React from 'react';
 
-import "./App.css"
+// import "./App.css"
 // import { Homecom } from './components/Homecom';
 // import Ticketbook from './components/ticketbook';
-import Apicallone from './components/apicallone';
+// import Apicallone from './components/apicallone';
+import Grocerylist from './components/Grocerylist';
+
 
 function App(){
   return(
@@ -13,7 +15,8 @@ function App(){
     
     {/* <Homecom /> */}
     {/* <Ticketbook /> */}
-    <Apicallone />
+    {/* <Apicallone /> */}
+    <Grocerylist />
     </div>
   )
 }
