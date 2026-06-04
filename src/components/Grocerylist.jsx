@@ -29,6 +29,23 @@ export default function Grocerylist() {
     handlefetch()  
    }
 
+   const handledelete =async (id) =>{
+    let deletedata=await axios.delete("http://localhost:3000/todoList/"+id)
+
+    handlefetch()
+   }
+
+   const handleedit =async (details) =>{
+    let updateddata=prompt("name",details["list"])
+    let body={
+        id:details.id,
+        list:updateddata
+    }
+
+    let editdata = await axios.put("http://localhost:3000/todoList/"+details.id, body)
+    handlefetch()
+   }
+
     
     
     
@@ -44,8 +61,8 @@ export default function Grocerylist() {
             <div key={da.id}>
 
                 <h2>{i=i+1}.{da.list}</h2>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() =>handleedit(da)}>Edit</button>
+                <button onClick={ () =>handledelete(da.id)}>Delete</button>
             </div>
 
         ))}
